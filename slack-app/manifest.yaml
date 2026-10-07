@@ -1,0 +1,55 @@
+display_information:
+  name: Crew M Campaign Bot
+  description: Chats with AMs to draft CleverTap campaign copy and creative, and routes drafts to PMM for approval.
+  background_color: "#54203f"
+
+features:
+  bot_user:
+    display_name: Crew M Campaign Bot
+    always_online: true
+
+oauth_config:
+  scopes:
+    bot:
+      # Messaging
+      - chat:write
+      - chat:write.public
+      # Reading conversations the bot is part of (DMs, channels, group DMs)
+      - channels:history
+      - channels:read
+      - groups:history
+      - groups:read
+      - im:history
+      - im:read
+      - im:write
+      - mpim:history
+      - mpim:read
+      - mpim:write
+      # Mentions
+      - app_mentions:read
+      # Reactions / emoji
+      - reactions:read
+      - reactions:write
+      # Profiles and handles
+      - users:read
+      # Attachments — parse, upload, download
+      - files:read
+      - files:write
+
+settings:
+  event_subscriptions:
+    request_url: https://workflow-stg.plumhq.com/webhook/iw-crew-m-c4b9-am-campaign
+    bot_events:
+      - message.im
+      - message.channels
+      - message.groups
+      - message.mpim
+      - app_mention
+      - reaction_added
+      - file_shared
+  interactivity:
+    is_enabled: true
+    request_url: https://workflow-stg.plumhq.com/webhook/iw-crew-m-c4b9-am-campaign
+  org_deploy_enabled: false
+  socket_mode_enabled: false
+  token_rotation_enabled: false

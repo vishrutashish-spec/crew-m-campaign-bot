@@ -1,0 +1,10 @@
+.env*
+.insurwreck*
+node_modules/
+.vercel
+.DS_Store
+
+# Real user data files (contain member IDs, consultation records, biomarkers)
+*.xlsx
+
+# CT schema CSVs are safe to commit (event/property names only, no user data)

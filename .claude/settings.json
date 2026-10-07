@@ -1,0 +1,8 @@
+{
+  "extraKnownMarketplaces": {
+    "insurwreck-kit": {
+      "source": { "source": "github", "repo": "PlumHQ/insurwreck-kit" }
+    }
+  },
+  "enabledPlugins": { "insurwreck@insurwreck-kit": true }
+}

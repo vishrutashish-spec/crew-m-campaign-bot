@@ -1,0 +1,12 @@
+# Crew M engine, deployed as a Vercel Python function.
+# Deliberately minimal: the cohort model, decision rubrics, timing engine and
+# SIGNAL are all pure Python, so nothing here beyond the web layer is needed.
+#
+# requests is here for exactly one route: POST /api/ct/resync, which re-pulls
+# the live usage block from CleverTap on demand. Every other figure is a dated
+# anchor committed in anchors.py, so no other request path makes a network call.
+# It was absent before the resync button existed, and its absence made that
+# route 500 in production while working locally.
+fastapi==0.115.6
+pydantic==2.10.4
+requests==2.32.3
