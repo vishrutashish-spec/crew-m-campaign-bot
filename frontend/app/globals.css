@@ -1124,62 +1124,6 @@ select.field:focus, input.field:focus, textarea.field:focus {
    Cursor glow. A soft plum-red bloom that trails the pointer with easing, so
    it reads as a light source rather than a chasing dot. Pointer-events none,
    never shown on touch, and disabled under reduced motion.
-   =========================================================================== */
-
-.cursor-glow {
-  position: fixed;
-  top: 0; left: 0;
-  width: 460px; height: 460px;
-  margin: -230px 0 0 -230px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  background: radial-gradient(
-    circle closest-side,
-    rgba(255, 63, 82, 0.16) 0%,
-    rgba(255, 63, 82, 0.09) 32%,
-    rgba(255, 63, 82, 0.035) 58%,
-    rgba(255, 63, 82, 0) 78%
-  );
-  filter: blur(26px);
-  will-change: transform;
-}
-.cursor-glow.on { opacity: 1; }
-.cursor-glow-core {
-  position: fixed;
-  top: 0; left: 0;
-  width: 132px; height: 132px;
-  margin: -66px 0 0 -66px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  background: radial-gradient(
-    circle closest-side,
-    rgba(255, 90, 106, 0.2) 0%,
-    rgba(255, 63, 82, 0.08) 45%,
-    rgba(255, 63, 82, 0) 72%
-  );
-  filter: blur(11px);
-  will-change: transform;
-}
-.cursor-glow-core.on { opacity: 1; }
-.dark .cursor-glow {
-  background: radial-gradient(
-    circle closest-side,
-    rgba(255, 79, 98, 0.2) 0%,
-    rgba(255, 79, 98, 0.11) 32%,
-    rgba(255, 79, 98, 0.04) 58%,
-    rgba(255, 79, 98, 0) 78%
-  );
-}
-@media (hover: none), (prefers-reduced-motion: reduce) {
-  .cursor-glow, .cursor-glow-core { display: none; }
-}
-
 /* ===========================================================================
    Recharts tooltip: the default legend dot renders as a hollow ring. Fill it
    with the series colour so the swatch matches the bar it describes.
