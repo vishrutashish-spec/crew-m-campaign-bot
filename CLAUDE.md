@@ -186,9 +186,9 @@ decisions in your area:
 | File | What it covers |
 |------|---------------|
 | `BRIEF.md` | Product scope, architecture decisions, demo story, what's in/out of scope |
-| `data/CREW_M_MASTER_CT_BIBLE.md` | Single source of truth for segments, events, funnels, copy rules, domain knowledge. If it contradicts something else, the Bible wins. |
-| `data/CLEVERTAP_PLATFORM_REFERENCE.md` | CleverTap API endpoints, data model, campaign analytics, intelligent features, rate limits |
-| `data/PLUM_ADOPTION_PRODUCT_CONTEXT.md` | What each Plum product is (TH, HC, Mental Health, GMC), adoption measurement, behavioral segmentation |
+| `CREW_M_MASTER_CT_BIBLE.md` | Single source of truth for segments, events, funnels, copy rules, domain knowledge. If it contradicts something else, the Bible wins. |
+| `CLEVERTAP_PLATFORM_REFERENCE.md` | CleverTap API endpoints, data model, campaign analytics, intelligent features, rate limits |
+| `PLUM_ADOPTION_PRODUCT_CONTEXT.md` | What each Plum product is (TH, HC, Mental Health, GMC), adoption measurement, behavioral segmentation |
 | `data/ct-schema/events_schema.csv` | Full CT event schema export (993 events, 28K rows of event×property) |
 | `data/ct-schema/user_properties_schema.csv` | Full CT user properties export (249 active properties) |
 
@@ -196,29 +196,27 @@ decisions in your area:
 
 | Person | Focus | Key reference docs |
 |--------|-------|-------------------|
-| **Vishrut** (PMM) | Product direction, ML pipeline, data strategy, CT integration | Bible, Platform Reference, BRIEF.md |
-| **Teammate — Design** | Design language, component library, visual system, pixel avatars, layouts | BRIEF.md (screen architecture, pixel avatar spec, naming convention) |
-| **Teammate — Copy** | Campaign copy, messaging frameworks, tone of voice, style enforcement | Bible Section 11 (copy style rules), Section 12 (narrative playbook), BRIEF.md (copy scoring spec) |
-| **Krtin** | AM Campaign Request Bot: Slack modal intake → n8n → copy/creative/CleverTap-draft API routes | BRIEF.md ("AM Campaign Request Bot" workstream), `CLEVERTAP_CAMPAIGN_SETUP_SKILL.md`, `CLEVERTAP_PLATFORM_REFERENCE.md`, `Copy_SKILL.md` |
+| **Vishrut** (PMM) | Product direction, CleverTap integration, audience rules | BRIEF.md, CAMPAIGN-BOT-PLAN.md, CT Bible, Platform Reference |
+| **Teammate - Design** | Email HTML templates, co-branding slot design, Figma source files | BRIEF.md, EMAIL-DESIGN-PLAYBOOK.md |
+| **Teammate - Copy** | Campaign copy style enforcement, voice | Copy_SKILL.md, CT Bible Section 11 |
+| **Krtin** | Bot pipeline: Slack intake, copy/creative/CleverTap-draft API routes | CAMPAIGN-BOT-PLAN.md, CLEVERTAP_CAMPAIGN_SETUP_SKILL.md, CLEVERTAP_PLATFORM_REFERENCE.md, Copy_SKILL.md |
 
 ### Locked decisions (do not revisit)
 
-These are already decided. Build to them, don't re-ask:
+These are already decided. Build to them, do not re-ask:
 
-- **Three screens**: Dashboard, Persona Explorer, Campaign Simulator
-- **Plain naming**: no fantasy/game names
-- **Pixel avatars**: deterministic pixel art characters for each persona
-- **Real ML**: K-Means/HDBSCAN clustering, XGBoost/LightGBM prediction, SHAP explainability
-- **Four-way output distinction**: OBSERVED / PREDICTED / RECOMMENDED / GENERATED — never blurred
-- **Tech stack**: Next.js + React + TypeScript + Tailwind + shadcn/ui (frontend), Python + FastAPI (backend), scikit-learn + XGBoost + SHAP (ML)
-- **Data strategy**: Real CleverTap data primary, synthetic fallback
-- **Copy style rules**: 10 hard rules from Bible Section 11 — enforced in copy scoring
+- **Scope**: Slack-triggered CleverTap campaign drafts, reviewed by a PMM before publish. No other UI, no sending outside CleverTap.
+- **Draft only, never publish**: the bot's CleverTap credentials create drafts; publishing is a human action in CleverTap.
+- **Templates own structure, the bot owns content**: HTML templates in the repo, bot fills substitution slots.
+- **Plain naming**: no fantasy or game names.
+- **Tech stack**: Next.js + React + TypeScript on Vercel, Supabase for storage and auth, CleverTap for sending.
+- **Copy style rules**: hard rules from Bible Section 11, enforced by the copy route.
 
 ### Rules for all sessions
 
 - Secrets (CT credentials, API keys) go in `.env.local`, never in code
 - All CT queries must specify a date range; max 1-year window
 - No export/download buttons in the UI — display only
-- The four-way distinction (OBSERVED/PREDICTED/RECOMMENDED/GENERATED) is non-negotiable
+- Every number quoted in a brief, Slack reply, or email body must come from a verified source. Do not invent figures, dates or limits.
 - When changing scope, update BRIEF.md — it's the shared memory
 

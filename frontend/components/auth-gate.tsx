@@ -4,7 +4,7 @@
  * Client-side auth gate.
  *
  * Until a Plum Workspace session exists, this renders the sign-in screen and
- * nothing else: no sidebar, no assistant, no page content. The server gate in
+ * nothing else: no page content. The server gate in
  * proxy.ts is what actually protects the data; this is what the person
  * sees, and it keeps a single unauthenticated figure from ever painting.
  *
@@ -17,7 +17,6 @@ import type { Session } from "@supabase/supabase-js";
 import {
   browserClient, authConfigured, emailAllowed, HOSTED_DOMAIN, ALLOWED_DOMAIN,
 } from "@/lib/supabase";
-import { CrewMLogo } from "@/components/logos";
 import { ShieldCheck, TriangleAlert, RotateCw } from "lucide-react";
 
 interface AuthValue {
@@ -181,7 +180,7 @@ function Shell({ children }: { children: React.ReactNode }) {
     <div className="auth-screen">
       <div className="auth-card glass">
         <div className="auth-brand">
-          <CrewMLogo />
+          <span style={{ fontWeight: 600, fontSize: "22px", letterSpacing: "-0.01em", color: "#2B0B21" }}>Crew M</span>
         </div>
         <h1 className="auth-title">Campaign intelligence</h1>
         {children}

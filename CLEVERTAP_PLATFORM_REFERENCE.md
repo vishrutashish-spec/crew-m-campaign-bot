@@ -394,7 +394,6 @@ Conversion event counted **once per user per campaign** even if repeated.
 - If computed bucket collides with user's DND window → **message discarded, not rescheduled**
 - Incompatible with global throttle limits
 
-**Crew M implication**: We can pull user activity timestamps to build our own send-time model, validated against CT's IntelliTime buckets.
 
 ### IntelliNODE (Journey Path Testing)
 
@@ -412,7 +411,6 @@ Conversion event counted **once per user per campaign** even if repeated.
 - Requires: ≥2 active channels, multi-channel reach, ≥3 total engagements (else "Not Enough Data")
 - Usable as: segment filter or Journey Conditional-Split branch
 
-**Crew M implication**: We can build our own channel preference model from the same underlying data, but CT already has one running. Our model should add persona-level channel preferences that CT's per-user model doesn't surface.
 
 ### Frequency Capping (Two Tiers)
 
@@ -538,14 +536,14 @@ Architecture must abstract data source — real CT and synthetic are interchange
 | CT Concept | How Crew M Uses It |
 |------------|-------------------|
 | Events + Properties | Feature engineering for user clustering |
-| User Profiles + Properties | Demographics and attribute features for personas |
+| User Profiles + Properties | Demographics and attribute features for segment targeting |
 | Segments (Past Behavior) | Audience targeting recommendations |
 | Campaign Reports | Training data for conversion prediction models |
 | Trends | Temporal pattern discovery, send-time optimization |
 | RFM Scores | Input features for persona clustering |
-| IntelliChannel | Validation for our channel preference model |
+| IntelliChannel | CleverTap's per-user channel preference, usable as a filter when creating a segment |
 | Funnel Analysis | Validating our funnel-stage predictions |
-| A/B Results | Highest-quality training signal for copy/channel models |
+| A/B Results | Direct evidence of what copy and send-time work on this account |
 | DND/Frequency Caps | Hard constraints on campaign recommendations |
 
 ---
