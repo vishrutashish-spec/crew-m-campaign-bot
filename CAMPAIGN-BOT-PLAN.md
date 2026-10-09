@@ -251,9 +251,10 @@ traffic.
 ### 7.1 Authentication on every campaign route
 
 Every route under `/api/campaign/*` requires either a valid Supabase session
-cookie (for PMM dashboard access) or a verified Slack signature (for bot
-triggers). An unauthenticated request receives 401 with no body. No campaign
-route is callable anonymously.
+cookie (for the PMM who approves a draft from a browser link) or a verified
+Slack signature (for bot triggers from the AM intake modal). An
+unauthenticated request receives 401 with no body. No campaign route is
+callable anonymously.
 
 ### 7.2 Slack webhook signature verification
 
